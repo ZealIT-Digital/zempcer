@@ -1,0 +1,167 @@
+<mvc:View xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:layout="sap.ui.layout" controllerName="ZCER_EMPLOYEE.controller.Main" class="sapUiSizeCompact">
+	<Page showHeader="true" title="CER" showFooter="true" showNavButton="false" navButtonPress="_onPageNavButtonPress">
+		<content>
+			<VBox alignItems="End" direction="Row" fitContainer="false" width="auto" height="auto" justifyContent="End" renderType="Div" visible="true" displayInline="false">
+				<items>
+					<Button text="Create new CER" type="Default" icon="sap-icon://add" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false" class="sapUiSmallMargin" press="_onCreateCerNewPress"/>
+					<Button id="idfinrep" text="Finance Reports" type="Default" icon="sap-icon://list" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false" class="sapUiSmallMargin" press="_onFinanceReportsPress"/>
+				</items>
+				<layoutData/>
+			</VBox>
+			
+			<IconTabBar expandable="false" expanded="true" applyContentPadding="false" backgroundDesign="Solid" upperCase="false" visible="true" selectedKey="opencers" select="_onFilterSelect" id="icontabmain">
+				<items>
+					
+					<IconTabFilter id="idopencers_icontab" icon="sap-icon://open-folder" iconColor="Neutral" text="Open CERs" count="{occount>/count}" design="Vertical" showAll="false" 
+					textDirection="Inherit" enabled="true" visible="true" iconDensityAware="false" key="opencers">
+						<content>
+						<Toolbar>
+							<ToolbarSpacer width="50px" /><Button icon="sap-icon://refresh" press="onInit" type="Transparent"/>
+						</Toolbar>
+							<Table id="table_opencer" width="auto" mode="None" showSeparators="All" growing="true" growingThreshold="20" growingScrollToLoad="true" class="sapUiResponsiveMargin" items="{path : 'opencers>/'}">
+								<infoToolbar/>
+								<headerToolbar/>
+								<columns>
+									<Column width="300px" hAlign="Left" vAlign="Top" minScreenWidth="Phone" demandPopin="false" popinDisplay="Inline" mergeDuplicates="false">
+										<header>
+											<Text text="Project" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+										</header>
+										<footer/>
+									</Column>
+									<Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+										<header>
+											<Text text="Application Date" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+										</header>
+										<footer/>
+									</Column>
+									<Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+										<header>
+											<Text text="Approver 1" width="auto" maxLines="3" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
+										</header>
+										<footer/>
+									</Column>
+									<Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+										<header>
+											<Text text="Approver 2" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+										</header>
+										<footer/>
+									</Column>
+									<Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+										<header>
+											<Text text="Pending Action" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+										</header>
+										<footer/>
+									</Column>
+								</columns>
+								<items>
+									<ColumnListItem>
+										<cells>
+											<ObjectIdentifier title="{opencers>ZProjectDescription}" titlePress="_ceriddetails" text="{opencers>ZCerId}(Status : {opencers>ZCerStatusDes})" titleActive="true" visible="true"/>
+											<Text text="{path: 'opencers>ZDateSubmitted', formatter:'.formatter.dateTime'}" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+											<Text text="{opencers>ZApprover1Name}" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+											<Text text="{opencers>ZApprover2Name}" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+											<VBox alignItems="Stretch" direction="Column" fitContainer="false" width="auto" height="auto" justifyContent="Start" renderType="Div" visible="true" displayInline="false">
+												<items>
+													<Button text="Retrieve Draft" type="Accept" icon="sap-icon://write-new-document" iconFirst="true" width="auto" enabled="true" iconDensityAware="false" press="_onRetriveDraft" visible="{=${opencers>ZCerStatus}==='1'? true : false}"/>
+													<Button text="Delete Draft" type="Reject" icon="sap-icon://delete" iconFirst="true" width="auto" enabled="true" visible="{=${opencers>ZCerStatus}==='1'? true : false}" iconDensityAware="false" press="_onDeleteDraft"/>
+												</items>
+												<layoutData/>
+											</VBox>
+										</cells>
+									</ColumnListItem>
+								</items>
+							</Table>
+						</content>
+					</IconTabFilter>
+					<IconTabSeparator icon="" iconDensityAware="false"/>
+					<IconTabFilter id="idapprovedcers_icontab" icon="sap-icon://approvals" iconColor="Positive" text="Approved" count="{aprcercount>/count}" design="Vertical" showAll="false" textDirection="Inherit" enabled="true" visible="true" iconDensityAware="false" key="approvedcers">
+						<content>
+								<Toolbar>
+							<ToolbarSpacer width="150px" /><Button icon="sap-icon://refresh" press="onInit" type="Transparent"/>
+						</Toolbar>
+							<Table id="table_approvedcer" width="auto" mode="None" showSeparators="All" growing="true" growingThreshold="20" growingScrollToLoad="true" class="sapUiResponsiveMargin" items="{path : 'aprdcers>/'}">
+									<infoToolbar/>
+								<headerToolbar/>
+								<columns>
+									<Column width="300px" hAlign="Left" vAlign="Top" minScreenWidth="Phone" demandPopin="false" popinDisplay="Inline" mergeDuplicates="false">
+										<header>
+											<Text text="Project" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+										</header>
+										<footer/>
+									</Column>
+									<Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Phone" demandPopin="false" popinDisplay="Inline" mergeDuplicates="false">
+										<header>
+											<Text text="Internal Order" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+										</header>
+										<footer/>
+									</Column>
+								</columns>
+								<items>
+									<ColumnListItem>
+										<cells>
+												<ObjectIdentifier title="{aprdcers>ZProjectDescription}" titlePress="_ceriddetailsappr" text="{aprdcers>ZCerId}(Status : {aprdcers>ZCerStatusDes})" titleActive="true" visible="true"/>
+											<Text text="{aprdcers>ZInternalOrder}" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+										</cells>
+									</ColumnListItem>
+								</items>
+							</Table>
+						</content>
+					</IconTabFilter>
+					<IconTabSeparator icon="" iconDensityAware="false"/>
+					<IconTabFilter id="idrejectedcers_icontab" icon="sap-icon://employee-rejections" iconColor="Default" text="Rejected" count="{rejcercount>/count}" design="Vertical" showAll="false" textDirection="Inherit" enabled="true" visible="true" iconDensityAware="false" key="rejectedcers">
+						<content>
+								<Toolbar>
+							<ToolbarSpacer width="250px" /><Button icon="sap-icon://refresh" press="onInit" type="Transparent"/>
+						</Toolbar>
+							<Table id="table_rejectedcer" width="auto" mode="None" showSeparators="All" growing="true" growingThreshold="20" growingScrollToLoad="true" class="sapUiResponsiveMargin" items="{path : 'rejdcers>/'}">
+								<infoToolbar/>
+								<headerToolbar/>
+								<columns>
+									<Column width="300px" hAlign="Left" vAlign="Top" minScreenWidth="Phone" demandPopin="false" popinDisplay="Inline" mergeDuplicates="false">
+										<header>
+											<Text text="Project" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+										</header>
+										<footer/>
+									</Column>
+									<Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+										<header>
+											<Text text="Reason" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+										</header>
+										<footer/>
+									</Column>
+								
+							
+								</columns>
+								<items>
+									<ColumnListItem>
+										<cells>
+												<ObjectIdentifier title="{rejdcers>ZProjectDescription}" titlePress="_ceriddetailsrej" text="{rejdcers>ZCerId}(Status : {rejdcers>ZCerStatusDes})" titleActive="true" visible="true"/>
+											<Text text="{rejdcers>ZReasonForReject}" width="auto" maxLines="2" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
+										<!--	<Text text="{rejcercount>ZApprover1Name}" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+											<Text text="{rejcercount>ZApprover2Name}" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>-->
+										
+										</cells>
+									</ColumnListItem>
+								</items>
+							</Table>
+						</content>
+					</IconTabFilter>
+				</items>
+				<content/>
+			</IconTabBar>
+		</content>
+		<footer>
+			<OverflowToolbar width="100%" height="46px" design="Auto" enabled="true" visible="true">
+				<content>
+					<ToolbarSpacer width=""/>
+					<Button id="downloadOpenCerbutton" text="Download List" type="Emphasized" icon="sap-icon://excel-attachment" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false" press="_downloadOpenCerlist"/>
+					<Button id="downloadAppCerbutton" text="Download List" type="Emphasized" icon="sap-icon://excel-attachment" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false" press="_downloadAppCerlist"/>
+					<Button id="downloadRejCerbutton" text="Download List" type="Emphasized" icon="sap-icon://excel-attachment" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false" press="_downloadRejCerlist"/>
+				</content>
+			</OverflowToolbar>
+		</footer>
+		<headerContent/>
+		<subHeader/>
+		<customHeader/>
+	</Page>
+</mvc:View>

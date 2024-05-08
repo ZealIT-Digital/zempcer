@@ -1,0 +1,538 @@
+<mvc:View xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:form="sap.ui.layout.form" xmlns:core="sap.ui.core" controllerName="ZCER_EMPLOYEE.controller.CreateCer" class="sapUiSizeCompact">
+	<Page id="idpage" showHeader="true" title="Create new CER" showFooter="true" showNavButton="true" navButtonPress="_back2Main">
+		<content>
+			<!-- COLUMNs = 2 -->
+			<form:Form width="100%" editable="true" visible="true">
+				<form:layout>
+					<form:ResponsiveGridLayout adjustLabelSpan="false" columnsL="2" labelSpanL="3" columnsM="1" labelSpanM="2" labelSpanS="12"/>
+				</form:layout>
+				<form:title>
+					<core:Title text="Header Info" level="Auto"/>
+				</form:title>
+				<form:formContainers>
+					<!--// COLUMN1-->
+					<form:FormContainer visible="true">
+						<form:formElements>
+							<form:FormElement visible="true">
+								<form:label>
+									<Label text="Company" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+								</form:label>
+								<form:fields>
+									<ComboBox id="compdd" change="_compddsel" items="{path : 'cdd>/'}" selectedKey="" required="true">
+										<items>
+											<core:Item key="" text=""/>
+											<core:Item key="{cdd>StoreValue}" text="{cdd>DispValue}"/>
+										</items>
+									</ComboBox>
+								</form:fields>
+							</form:FormElement>
+							<form:FormElement visible="true">
+								<form:label>
+									<Label text="Submitted With FY Budget" design="Standard" width="100%" textAlign="Begin" textDirection="Inherit" visible="true" required="true"/>
+								</form:label>
+								<form:fields>
+									<RadioButtonGroup id="idsubmittedbudget" columns="8" selectedIndex="0" valueState="None" width="auto" editable="true" enabled="true" textDirection="Inherit" select="_onRadioButtonGroupSelectbudget">
+										<buttons>
+											<RadioButton id="radiobudgetyes" text="Yes" editable="true" enabled="true" visible="true" width="auto" valueState="None" selected="false"/>
+											<RadioButton id="radiobudgetno" text="No" editable="true" enabled="true" visible="true" width="auto" valueState="None" selected="false"/>
+										</buttons>
+									</RadioButtonGroup>
+								</form:fields>
+							</form:FormElement>
+							<form:FormElement visible="true">
+								<form:label>
+									<Label text="Cost Center" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+								</form:label>
+								<form:fields>
+									<ComboBox id="ccenterdd" items="{path:'ccdd>/'}" width="auto" selectedKey="" change="_ccenterddsel" required="true">
+										<items>
+											<core:Item key="" text=""/>
+											<core:Item key="{ccdd>ZCostCenter}" text="{ccdd>ZCostCenter} - {ccdd>ZCostCenterDesc}"/>
+										</items>
+									</ComboBox>
+								</form:fields>
+							</form:FormElement>
+							<form:FormElement id="projectddform">
+								<form:label>
+									<Label text="Project" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+								</form:label>
+								<form:fields>
+									<ComboBox id="projectdd" items="{path:'pjctdd>/'}" change="_pjctddsel" selectedKey="" width="auto" required="true">
+										<items>
+											<core:Item key="" text=""/>
+											<core:Item key="{pjctdd>ZProjectId}" text="{pjctdd>ZProjectId}:{pjctdd&gt;ZProjectDescription}"/>
+										</items>
+									</ComboBox>
+								</form:fields>
+							</form:FormElement>
+							<form:FormElement id="projectdescform">
+								<form:label>
+									<Label text="Project" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+								</form:label>
+								<form:fields>
+									<Input id="projectdesc" value="{pjctdesc>/ZProjectDescription}" type="Text" showValueHelp="false" enabled="true" visible="true" width="auto" valueHelpOnly="false" required="true" valueStateText="Invalid entry" maxLength="40" placeholder="Type Project description"/>
+								</form:fields>
+							</form:FormElement>
+							<form:FormElement visible="true">
+								<form:label>
+									<Label text="Estimated Project Start/Finish Date" design="Standard" width="100%" required="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
+								</form:label>
+								<form:fields>
+									<DatePicker id="idestdate1" placeholder="Est Start Date" width="auto" displayFormat="medium" required="false" valueFormat="yyyy-MM-dd" valueStateText="Invalid entry" enabled="true" visible="true"/>
+									<DatePicker id="idfinishdate1" placeholder="Est Finish Date" width="auto" displayFormat="medium" required="false" valueStateText="Invalid entry" enabled="true" visible="true" valueFormat="yyyy-MM-dd"/>
+								</form:fields>
+							</form:FormElement>
+						</form:formElements>
+						<form:title/>
+					</form:FormContainer>
+					<!--// COLUMN2-->
+					<form:FormContainer visible="true">
+						<form:formElements>
+							<form:FormElement visible="true">
+								<form:label>
+									<Label text="General Ledger" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+								</form:label>
+								<form:fields>
+									<Input id="idgenled" value="{genled>/}" type="Text" showValueHelp="false" enabled="true" visible="true" width="auto" valueHelpOnly="false" required="false" valueStateText="Invalid entry" maxLength="0"/>
+								</form:fields>
+							</form:FormElement>
+							<form:FormElement visible="true" id="assetinput">
+								<form:label>
+									<Label text="Asset Class / Category" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+								</form:label>
+								<form:fields>
+									<Input id="astdesc" value="{allvalues>/assclass} - {allvalues>/assdesc}" type="Text" showValueHelp="false" enabled="true" visible="true" width="auto" valueHelpOnly="false" required="true" valueStateText="Invalid entry" maxLength="0"/>
+									<!--<Input id="astclass" value="{allvalues>/assclass}" />-->
+								</form:fields>
+							</form:FormElement>
+							<form:FormElement visible="false">
+								<form:label>
+									<!--	<Label text="Asset Class / Category" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="Inherit"
+										visible="true"/>-->
+								</form:label>
+								<form:fields>
+									<!--	<Input id="astdesc" value="{allvalues>/assdesc}" type="Text" showValueHelp="false" enabled="true" visible="true" width="auto"
+										valueHelpOnly="false" required="true" valueStateText="Invalid entry" maxLength="0"/>-->
+									<Input id="astclass" value="{allvalues>/assclass}"/>
+								</form:fields>
+							</form:FormElement>
+							<form:FormElement visible="false" id="assetcombo">
+								<form:label>
+									<Label text="Asset Class / Category" design="Standard" width="100%" required="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
+								</form:label>
+								<form:fields>
+									<!--Asset class drop down is commented and values hardcoded as no values coming from ECC-->
+									<ComboBox id="astdescdd" selectedKey="" change="_assetdd" items="{path : 'bdtnoastclass>/'}">
+										<!--<ComboBox id="astdescdd" selectedKey="" change="_assetdd" enabled="true">-->
+										<items>
+											<core:Item key="" text=""/>
+											<!--<core:Item key="12212020" text="12212020 - Software(COS)"/>-->
+											<!--<core:Item key="12217010" text="12217010 - Other Intangible Assets-Product Registration(SGA)"/>-->
+											<core:Item key="{bdtnoastclass>ZAssetClass}" text="{bdtnoastclass>ZAssetClass} - {bdtnoastclass>ZAssetDesc}"/>
+											<!--<core:Item key="{bdtnoastclass>}" text="{bdtnoastclass>}"/>-->
+										</items>
+									</ComboBox>
+								</form:fields>
+							</form:FormElement>
+							<form:FormElement visible="true">
+								<form:label>
+									<Label text="Budgeted Amount (Full Project Amount)" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+								</form:label>
+								<form:fields>
+									<!--<Input value="{path:'/number', type:'sap.ui.model.type.Currency'}" maxLength="10"/>-->
+									<!--<MaskInput mask="99999999.99" placeholderSymbol="" placeholder=""/>-->
+									<Input id="bdgamnt" value="{allvalues>/budgamnt}" showValueHelp="false" enabled="true" visible="true" width="auto" valueHelpOnly="false" required="true" valueStateText="Invalid entry" maxLength="8" liveChange="_onlynumbers"/>
+									<!--<Input id="bdgamntdec" placeholder="00" textDirection="RTL" maxLength="2" textAlign="Left" fieldWidth="10%" width="40%"/>
+									<Text width="50px"/>-->
+								</form:fields>
+							</form:FormElement>
+							<form:FormElement visible="true">
+								<form:label>
+									<Label text="Useful Life" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+								</form:label>
+								<form:fields>
+									<Input id="usefullife" value="{allvalues>/usefullife}" type="Text" showValueHelp="false" enabled="true" visible="true" width="auto" valueHelpOnly="false" required="false" valueStateText="Invalid entry"/>
+								</form:fields>
+							</form:FormElement>
+							<form:FormElement visible="true">
+								<form:label>
+									<Label text="Is this Manufacturing Equipment?" design="Standard" width="100%" required="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
+								</form:label>
+								<form:fields>
+									<RadioButtonGroup id="idmanfacturingunitgrp" columns="8" selectedIndex="0" valueState="None" width="auto" editable="true" enabled="true" textDirection="Inherit" select="_onRadioButtonGroupSelect_man">
+										<buttons>
+											<RadioButton text="Yes" editable="true" enabled="true" visible="true" width="auto" valueState="None" selected="false"/>
+											<RadioButton text="No" editable="true" enabled="true" visible="true" width="auto" valueState="None" selected="false"/>
+										</buttons>
+									</RadioButtonGroup>
+								</form:fields>
+							</form:FormElement>
+							<!--<form:FormElement label="" id="__element19">
+								<form:label>
+									<Label text="Is Software?" design="Standard" width="100%" required="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
+								</form:label>
+								<form:fields>
+									<RadioButtonGroup id="idsoft" columns="8" selectedIndex="0" valueState="None" width="auto" editable="true" enabled="true"
+										textDirection="Inherit" select="_onRadioButtonGroupSelect_soft">
+										<buttons>
+											<RadioButton text="Yes" editable="true" enabled="true" visible="true" width="auto" valueState="None" selected="false"/>
+											<RadioButton text="No" editable="true" enabled="true" visible="true" width="auto" valueState="None" selected="false"/>
+										</buttons>
+									</RadioButtonGroup>
+								</form:fields>
+							</form:FormElement>-->
+						</form:formElements>
+						<form:title/>
+						<form:customData>
+							<core:CustomData key="w5g.dt.editable" value="false" id="__data67"/>
+						</form:customData>
+					</form:FormContainer>
+				</form:formContainers>
+			</form:Form>
+			<form:Form width="100%" editable="true" visible="true">
+				<form:title/>
+				<form:formContainers>
+					<form:FormContainer visible="true">
+						<form:formElements>
+							<form:FormElement visible="true">
+								<form:label>
+									<Label text="Business Justification" design="Standard" width="100%" required="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
+								</form:label>
+								<form:fields>
+									<TextArea id="idbusjust" rows="5" placeholder="Max 255. chars." cols="15" maxLength="255" wrapping="None" enabled="true" valueStateText="Invalid entry" visible="true"/>
+								</form:fields>
+							</form:FormElement>
+						</form:formElements>
+						<form:title/>
+					</form:FormContainer>
+				</form:formContainers>
+				<form:layout>
+					<form:ResponsiveGridLayout adjustLabelSpan="false" columnsL="2" labelSpanL="3" columnsM="1" labelSpanM="2" labelSpanS="12"/>
+				</form:layout>
+			</form:Form>
+			<form:Form width="100%" editable="true" visible="true">
+				<form:title>
+					<core:Title text="Asset Info" level="Auto"/>
+				</form:title>
+				<form:formContainers/>
+				<form:layout>
+					<form:ResponsiveGridLayout adjustLabelSpan="false" columnsL="2" labelSpanL="3" columnsM="1" labelSpanM="2" labelSpanS="12"/>
+				</form:layout>
+			</form:Form>
+			<form:Form width="100%" editable="true" visible="true">
+				<form:title/>
+				<form:formContainers>
+					<form:FormContainer visible="true">
+						<form:formElements>
+							<form:FormElement visible="false">
+								<form:label>
+									<Label text="Total Capital Amount(incl. tax)" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+								</form:label>
+								<form:fields>
+									<Text text="100,000 USD" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+									<Text text="Note that assets must be greater than $3,000." width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+								</form:fields>
+							</form:FormElement>
+							<form:FormElement visible="true">
+								<form:label>
+									<Label text="Asset environmental consideration" design="Standard" width="100%" required="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
+								</form:label>
+								<form:fields>
+									<ComboBox id="aecdd" placeholder="Please choose the primary environmental aspect you considered in selecting the asset(s) in favor of another:" editable="true" enabled="true" visible="true" width="auto" valueState="None" maxWidth="100%" change="_assetenvconsiddd" items="{path : 'aec>/'}">
+										<items>
+											<core:Item key="blankkey1" text=""/>
+											<core:Item key="{aec>StoreValue}" text="{aec>StoreValue}-{aec&gt;DispValue}"/>
+										</items>
+									</ComboBox>
+								</form:fields>
+							</form:FormElement>
+						</form:formElements>
+						<form:title/>
+					</form:FormContainer>
+				</form:formContainers>
+				<form:layout>
+					<form:ResponsiveGridLayout adjustLabelSpan="false" columnsL="2" labelSpanL="3" columnsM="1" labelSpanM="2" labelSpanS="12"/>
+				</form:layout>
+			</form:Form>
+			<form:Form width="100%" editable="true" visible="true">
+				<form:title>
+					<core:Title text="Non-Capital Expenses For This Project" level="Auto"/>
+				</form:title>
+				<form:formContainers/>
+				<form:layout>
+					<form:ResponsiveGridLayout adjustLabelSpan="false" columnsL="2" labelSpanL="3" columnsM="1" labelSpanM="2" labelSpanS="12"/>
+				</form:layout>
+			</form:Form>
+			<Table width="auto" noDataText="No data" mode="None" showSeparators="All" class="sapUiResponsiveMargin">
+				<infoToolbar>
+					<Toolbar width="100%" height="auto" design="Auto" visible="false" enabled="true">
+						<content>
+							<Label text="Label" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+						</content>
+					</Toolbar>
+				</infoToolbar>
+				<headerToolbar/>
+				<columns>
+					<Column width="400px" hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+						<header>
+							<Text text="Description" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+						</header>
+						<footer/>
+					</Column>
+					<Column width="600px" hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+						<header>
+							<Text text="Details" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+						</header>
+						<footer/>
+					</Column>
+					<Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+						<header>
+							<Text text="Expense" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+						</header>
+						<footer/>
+					</Column>
+				</columns>
+				<items>
+					<ColumnListItem type="Active">
+						<cells>
+							<!--<Input type="Text" showValueHelp="false" enabled="true" visible="true" width="auto" valueHelpOnly="false" required="false"
+								valueStateText="Invalid entry" maxLength="0"/>-->
+							<ComboBox id="noncapexpdescdd1" selectedKey="" items="{path : 'nce1>/'}" width="400px">
+								<items>
+									<core:Item key="" text=""/>
+									<core:Item key="{nce1>StoreValue}" text="{nce1>DispValue}"/>
+								</items>
+							</ComboBox>
+							<Input id="iddetails1" type="Text" showValueHelp="false" enabled="true" visible="true" width="557px" valueHelpOnly="false" required="false" valueStateText="Invalid entry" maxLength="50"/>
+							<Input id="idexp1" showValueHelp="false" enabled="true" visible="true" width="auto" valueHelpOnly="false" required="false" valueStateText="Invalid entry" maxLength="8" liveChange="_expensessummate"/>
+						</cells>
+					</ColumnListItem>
+					<ColumnListItem type="Active">
+						<cells>
+							<!--	<Input type="Text" showValueHelp="false" enabled="true" visible="true" width="auto" valueHelpOnly="false" required="false"
+								valueStateText="Invalid entry" maxLength="0"/>-->
+							<ComboBox id="noncapexpdescdd2" selectedKey="" items="{path : 'nce2>/'}" width="400px">
+								<items>
+									<core:Item key="" text=""/>
+									<core:Item key="{nce2>StoreValue}" text="{nce2>DispValue}"/>
+								</items>
+							</ComboBox>
+							<Input id="iddetails2" type="Text" showValueHelp="false" enabled="true" visible="true" width="557px" valueHelpOnly="false" required="false" valueStateText="Invalid entry" maxLength="50"/>
+							<Input id="idexp2" type="Text" showValueHelp="false" enabled="true" visible="true" width="auto" valueHelpOnly="false" required="false" valueStateText="Invalid entry" maxLength="8" liveChange="_expensessummate"/>
+						</cells>
+					</ColumnListItem>
+					<ColumnListItem type="Active">
+						<cells>
+							<Input id="noncapexpdescdd3" type="Text" showValueHelp="false" enabled="true" visible="true" valueHelpOnly="false" required="false" valueStateText="Invalid entry" maxLength="50" width="383px"/>
+							<Input id="iddetails3" type="Text" showValueHelp="false" enabled="true" visible="true" width="557px" valueHelpOnly="false" required="false" valueStateText="Invalid entry" maxLength="50"/>
+							<Input id="idexp3" type="Text" showValueHelp="false" enabled="true" visible="true" width="auto" valueHelpOnly="false" required="false" valueStateText="Invalid entry" maxLength="8" liveChange="_expensessummate"/>
+						</cells>
+					</ColumnListItem>
+					<ColumnListItem type="Active">
+						<cells>
+							<Input id="noncapexpdescdd4" type="Text" showValueHelp="false" enabled="true" visible="true" valueHelpOnly="false" required="false" valueStateText="Invalid entry" maxLength="50" width="383px"/>
+							<Input id="iddetails4" type="Text" showValueHelp="false" enabled="true" visible="true" width="557px" valueHelpOnly="false" required="false" valueStateText="Invalid entry" maxLength="50"/>
+							<Input id="idexp4" type="Text" showValueHelp="false" enabled="true" visible="true" width="auto" valueHelpOnly="false" required="false" valueStateText="Invalid entry" maxLength="8" liveChange="_expensessummate"/>
+						</cells>
+					</ColumnListItem>
+				</items>
+			</Table>
+			<Toolbar design="Transparent">
+				<ToolbarSpacer width="32%"/>
+				<Text text=":Total Non-Capital Expenses (incl. tax)" textAlign="Right" visible="true" wrapping="false" width="50%" textDirection="RTL"/>
+				<Text id="idexptotal" text="0" width="auto" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+			</Toolbar>
+			<form:Form width="100%" editable="true" visible="true">
+				<form:title>
+					<core:Title text="Internal Resources Used For This Project" level="Auto"/>
+				</form:title>
+				<form:formContainers/>
+				<form:layout>
+					<form:ResponsiveGridLayout adjustLabelSpan="false" columnsL="2" labelSpanL="3" columnsM="1" labelSpanM="2" labelSpanS="12"/>
+				</form:layout>
+			</form:Form>
+			<Table width="auto" noDataText="No data" mode="None" showSeparators="All" class="sapUiResponsiveMargin">
+				<infoToolbar>
+					<Toolbar width="100%" height="auto" design="Auto" visible="false" enabled="true">
+						<content>
+							<Label text="Label" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+						</content>
+					</Toolbar>
+				</infoToolbar>
+				<headerToolbar/>
+				<columns>
+					<Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+						<header>
+							<Text text="Group Required" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+						</header>
+						<footer/>
+					</Column>
+					<Column width="600px" hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+						<header>
+							<Text text="Details" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+						</header>
+						<footer/>
+					</Column>
+					<Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+						<header>
+							<Text text="Hours" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+						</header>
+						<footer/>
+					</Column>
+				</columns>
+				<items>
+					<ColumnListItem>
+						<cells>
+							<Input id="idinternalgrp1" type="Text" showValueHelp="false" enabled="true" visible="true" width="auto" valueHelpOnly="false" required="false" valueStateText="Invalid entry" maxLength="20"/>
+							<Input id="idinternaldtls1" type="Text" showValueHelp="false" enabled="true" visible="true" width="557px" valueHelpOnly="false" required="false" valueStateText="Invalid entry" maxLength="50"/>
+							<Input id="idintreshrs1" type="Text" showValueHelp="false" enabled="true" visible="true" width="auto" valueHelpOnly="false" required="false" valueStateText="Invalid entry" maxLength="4" liveChange="_internalreshours"/>
+						</cells>
+					</ColumnListItem>
+					<ColumnListItem>
+						<cells>
+							<Input id="idinternalgrp2" type="Text" showValueHelp="false" enabled="true" visible="true" width="auto" valueHelpOnly="false" required="false" valueStateText="Invalid entry" maxLength="20"/>
+							<Input id="idinternaldtls2" type="Text" showValueHelp="false" enabled="true" visible="true" width="557px" valueHelpOnly="false" required="false" valueStateText="Invalid entry" maxLength="50"/>
+							<Input id="idintreshrs2" type="Text" showValueHelp="false" enabled="true" visible="true" width="auto" valueHelpOnly="false" required="false" valueStateText="Invalid entry" maxLength="4" liveChange="_internalreshours"/>
+						</cells>
+					</ColumnListItem>
+					<ColumnListItem>
+						<cells>
+							<Input id="idinternalgrp3" type="Text" showValueHelp="false" enabled="true" visible="true" width="auto" valueHelpOnly="false" required="false" valueStateText="Invalid entry" maxLength="20"/>
+							<Input id="idinternaldtls3" type="Text" showValueHelp="false" enabled="true" visible="true" width="557px" valueHelpOnly="false" required="false" valueStateText="Invalid entry" maxLength="50"/>
+							<Input id="idintreshrs3" type="Text" showValueHelp="false" enabled="true" visible="true" width="auto" valueHelpOnly="false" required="false" valueStateText="Invalid entry" maxLength="4" liveChange="_internalreshours"/>
+						</cells>
+					</ColumnListItem>
+					<ColumnListItem>
+						<cells>
+							<Input id="idinternalgrp4" type="Text" showValueHelp="false" enabled="true" visible="true" width="auto" valueHelpOnly="false" required="false" valueStateText="Invalid entry" maxLength="20"/>
+							<Input id="idinternaldtls4" type="Text" showValueHelp="false" enabled="true" visible="true" width="557px" valueHelpOnly="false" required="false" valueStateText="Invalid entry" maxLength="50"/>
+							<Input id="idintreshrs4" type="Text" showValueHelp="false" enabled="true" visible="true" width="auto" valueHelpOnly="false" required="false" valueStateText="Invalid entry" maxLength="4" liveChange="_internalreshours"/>
+						</cells>
+					</ColumnListItem>
+					<ColumnListItem>
+						<cells>
+							<Text/>
+							<Text text="Total Hours" textAlign="End"/>
+							<Text id="idintreshrstotal" text="0" width="auto" textAlign="Begin" textDirection="Inherit" visible="true"/>
+						</cells>
+					</ColumnListItem>
+				</items>
+			</Table>
+			<Toolbar design="Transparent">
+				<Text text="* Ensure that project is discussed with all internal departments involved" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+				<!--<ToolbarSpacer width="24%"/>-->
+				<!--<Label text="Total Hours" design="Standard" width="100%" required="false" textAlign="Center" textDirection="Inherit" visible="true"/>-->
+			</Toolbar>
+			<!--	<Toolbar design="Transparent">
+					<ToolbarSpacer/>
+					<Text text="* Ensure that project is discussed with all internal departments involved" width="auto" maxLines="1" wrapping="false" 
+					textAlign="Begin" textDirection="Inherit" visible="true"/>
+					<ToolbarSpacer/>
+				</Toolbar>-->
+			<form:Form width="100%" editable="true" visible="true">
+				<form:layout>
+					<form:ResponsiveGridLayout adjustLabelSpan="false" columnsL="2" labelSpanL="3" labelSpanS="12"/>
+				</form:layout>
+				<form:title/>
+				<form:formContainers>
+					<!--COLUMN 1-->
+					<form:FormContainer visible="true">
+						<form:formElements>
+							<form:FormElement visible="true">
+								<form:label>
+									<Label text="Does This Replace A Current Asset?" design="Standard" width="100%" required="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
+								</form:label>
+								<form:fields>
+									<RadioButtonGroup id="idrepcurasst" columns="8" selectedIndex="0" valueState="None" width="auto" editable="true" enabled="true" textDirection="Inherit" select="_onRadioButtonGroupSelect2">
+										<buttons>
+											<RadioButton text="Yes" editable="true" enabled="true" visible="true" width="auto" valueState="None" selected="false"/>
+											<RadioButton text="No" editable="true" enabled="true" visible="true" width="auto" valueState="None" selected="false"/>
+										</buttons>
+									</RadioButtonGroup>
+								</form:fields>
+							</form:FormElement>
+							<form:FormElement visible="true">
+								<form:label>
+									<Label text="Description/Location" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+								</form:label>
+								<form:fields>
+									<Input id="idrepastdesc" type="Text" showValueHelp="false" enabled="true" visible="true" width="auto" valueHelpOnly="false" required="true" valueStateText="Invalid entry" maxLength="50"/>
+								</form:fields>
+							</form:FormElement>
+							<form:FormElement visible="true">
+								<form:label>
+									<Label text="Cost Center" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+								</form:label>
+								<form:fields>
+									<Input id="idrepastcc" type="Text" showValueHelp="false" enabled="true" visible="true" width="auto" valueHelpOnly="false" required="true" valueStateText="Invalid entry" maxLength="10"/>
+								</form:fields>
+							</form:FormElement>
+						</form:formElements>
+						<form:title/>
+						<!--<form:customData>-->
+						<!--	<core:CustomData key="w5g.dt.editable" value="false" id="__data71"/>-->
+						<!--</form:customData>-->
+					</form:FormContainer>
+					<!--COLUMN 2-->
+						<form:FormContainer visible="true">
+						<form:formElements>
+							<form:FormElement visible="true">
+								<form:label>
+									<Label text=""/>
+								</form:label>
+								<form:fields>
+									<Text text=""/>
+								</form:fields>
+							</form:FormElement>
+								<form:FormElement visible="true">
+								<form:label>
+									<Label text=""/>
+								</form:label>
+								<!--<form:fields>-->
+								<!--	<Text text=""/>-->
+								<!--</form:fields>-->
+							</form:FormElement>
+							<form:FormElement visible="true">
+								<form:label>
+									<Label text="Serial #" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+								</form:label>
+								<form:fields>
+								<Input id="idrepastser" placeholder="Serial #" type="Text" showValueHelp="false" enabled="true" visible="true" width="auto" valueHelpOnly="false" required="false" valueStateText="Invalid entry" maxLength="18"/>
+								</form:fields>
+							</form:FormElement>
+							<form:FormElement visible="true">
+								<form:label>
+									<Label text="CER #" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+								</form:label>
+								<form:fields>
+									<Input id="idrepastcer" placeholder="CER #" type="Text" showValueHelp="false" enabled="true" visible="true" width="auto" valueHelpOnly="false" required="false" valueStateText="Invalid entry" maxLength="15"/>
+								</form:fields>
+							</form:FormElement>
+						
+						</form:formElements>
+						<!--<form:title/>-->
+						<!--<form:customData>-->
+						<!--	<core:CustomData key="w5g.dt.editable" value="false" id="__data71"/>-->
+						<!--</form:customData>-->
+					</form:FormContainer>
+				</form:formContainers>
+				
+			</form:Form>
+		</content>
+		<footer>
+			<OverflowToolbar width="100%" height="46px" design="Auto" enabled="true" visible="true">
+				<content>
+					<!--	<Button id="popoverBtn" class="roundButtonBorders" icon="sap-icon://message-popup" text="{/messagesLength}"
+						press="handleMessagePopoverPress"/>-->
+					<ToolbarSpacer width=""/>
+					<!--<Button id="savedraft1" text="Save Draft1" press="_savedraft1" type="Emphasized" iconFirst="false" width="auto" enabled="true" visible="true" iconDensityAware="false"/>-->
+					<Button id="savedraft" text="Save Draft" press="_savedraft" type="Emphasized" iconFirst="false" width="auto" enabled="true" visible="true" iconDensityAware="false"/>
+					<Button text="Submit" id="idsubmitbut" press="_submitcer" type="Emphasized" iconFirst="false" width="auto" enabled="true" visible="true" iconDensityAware="false"/>
+				</content>
+			</OverflowToolbar>
+		</footer>
+		<headerContent/>
+		<subHeader/>
+		<customHeader/>
+	</Page>
+</mvc:View>

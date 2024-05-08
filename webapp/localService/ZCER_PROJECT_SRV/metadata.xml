@@ -1,0 +1,123 @@
+<edmx:Edmx
+    xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx"
+    xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata"
+    xmlns:sap="http://www.sap.com/Protocols/SAPData" Version="1.0">
+    <edmx:DataServices m:DataServiceVersion="2.0">
+        <Schema
+            xmlns="http://schemas.microsoft.com/ado/2008/09/edm" Namespace="ZCER_PROJECT_SRV" xml:lang="en" sap:schema-version="1">
+            <EntityType Name="CER_MASTER" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="ZCerId"/>
+                </Key>
+                <Property Name="ZAssetDesc" Type="Edm.String" Nullable="false" MaxLength="20" sap:label="Short Text" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ZEnvironmentConsidDesc" Type="Edm.String" Nullable="false" MaxLength="100" sap:label="ENVIRONMENT CONSIDERATION Description" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ZCerStatusDes" Type="Edm.String" Nullable="false" MaxLength="100" sap:label="CER Status Description" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ZCerId" Type="Edm.String" Nullable="false" MaxLength="15" sap:label="CER ID" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ZCompanyCode" Type="Edm.String" Nullable="false" MaxLength="4" sap:label="Company Code" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ZNonCapexDescription1Txt" Type="Edm.String" Nullable="false" MaxLength="100" sap:label="NON CAPEX DESCRIPTION1 Text" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ZProjectId" Type="Edm.String" Nullable="false" MaxLength="20" sap:label="Ext. order no." sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ZNonCapexDescription2Txt" Type="Edm.String" Nullable="false" MaxLength="100" sap:label="NON CAPEX DESCRIPTION2 Text" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ZBudgeted" Type="Edm.String" Nullable="false" MaxLength="1" sap:label="YES/NO" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ZRequestorId" Type="Edm.String" Nullable="false" MaxLength="12" sap:label="REQUESTOR ID" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ZApprover1Name" Type="Edm.String" Nullable="false" MaxLength="80" sap:label="APPROVER1 NAME" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ZNonCapexDescription1" Type="Edm.String" Nullable="false" MaxLength="50" sap:label="NON CAPEX DESCRIPTIO" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ZApprover2Name" Type="Edm.String" Nullable="false" MaxLength="80" sap:label="APPROVER2 NAME" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ZNonCapexDetails1" Type="Edm.String" Nullable="false" MaxLength="50" sap:label="NON CAPEX DETAILS 1" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ZNonCapexExpense1" Type="Edm.Decimal" Nullable="false" Precision="12" Scale="3" sap:label="NON CAPEX EXPENSE 1" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ZNonCapexDescription2" Type="Edm.String" Nullable="false" MaxLength="50" sap:label="NON_CAPEX_DESCRIPT" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ZNonCapexDetails2" Type="Edm.String" Nullable="false" MaxLength="50" sap:label="NON_CAPEX_DETAILS_2" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ZProjectDescription" Type="Edm.String" Nullable="false" MaxLength="40" sap:label="Project description" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ZCostCenter" Type="Edm.String" Nullable="false" MaxLength="10" sap:label="Cost Center" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ZNonCapexExpense2" Type="Edm.Decimal" Nullable="false" Precision="12" Scale="3" sap:label="NON_CAPEX_EXPENSE_2" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ZInternalOrder" Type="Edm.String" Nullable="false" MaxLength="12" sap:label="Order" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ZNonCapexDescription3" Type="Edm.String" Nullable="false" MaxLength="50" sap:label="NON_CAPEX_DESCRIPTIO" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ZDateSubmitted" Type="Edm.DateTime" Precision="7" sap:label="ApplicDate" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ZNonCapexDetails3" Type="Edm.String" Nullable="false" MaxLength="50" sap:label="NON_CAPEX_DETAILS_3" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ZNonCapexExpense3" Type="Edm.Decimal" Nullable="false" Precision="12" Scale="3" sap:label="NON_CAPEX_EXPENSE_3" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ZRequestor" Type="Edm.String" Nullable="false" MaxLength="80" sap:label="REQUESTOR Name" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ZAssetClass" Type="Edm.String" Nullable="false" MaxLength="8" sap:label="Asset Class" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ZNonCapexDescription4" Type="Edm.String" Nullable="false" MaxLength="50" sap:label="NON_CAPEX_DESCRIPTIO" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ZBudgetedAmount" Type="Edm.Decimal" Nullable="false" Precision="12" Scale="3" sap:label="BUDGETED_AMOUNT" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ZNonCapexDetails4" Type="Edm.String" Nullable="false" MaxLength="50" sap:label="NON_CAPEX_DETAILS_4" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ZCurrency" Type="Edm.String" Nullable="false" MaxLength="5" sap:label="Currency" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" sap:semantics="currency-code"/>
+                <Property Name="ZNonCapexExpense4" Type="Edm.Decimal" Nullable="false" Precision="12" Scale="3" sap:label="NON_CAPEX_EXPENSE_4" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ZInternalResourcesGroup1" Type="Edm.String" Nullable="false" MaxLength="20" sap:label="INTERNAL_RESOURCES_GROUP_1" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ZUsefulLifeYear" Type="Edm.String" Nullable="false" MaxLength="3" sap:label="Useful life" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ZInternalResourcesDetails1" Type="Edm.String" Nullable="false" MaxLength="50" sap:label="INTERNAL_RESOURCES_DETAILS_1" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ZUsefulLifePeriod" Type="Edm.String" Nullable="false" MaxLength="3" sap:label="Periods" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ZInternalResourcesHours1" Type="Edm.String" Nullable="false" MaxLength="4" sap:label="INTERNAL_RESOURCES_HOURS_1" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ZSoftware" Type="Edm.String" Nullable="false" MaxLength="1" sap:label="YES/NO" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ZBusinessJustification" Type="Edm.String" Nullable="false" MaxLength="255" sap:label="BUSINESS JUSTIFICATI" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ZInternalResourcesGroup2" Type="Edm.String" Nullable="false" MaxLength="20" sap:label="INTERNAL_RESOURCES_GROUP_2" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ZInternalResourcesDetails2" Type="Edm.String" Nullable="false" MaxLength="50" sap:label="INTERNAL_RESOURCES_DETAILS_2" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ZManufacturingEquipment" Type="Edm.String" Nullable="false" MaxLength="1" sap:label="YES/NO" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ZEnvironmentConsideration" Type="Edm.String" Nullable="false" MaxLength="1" sap:label="ENVIRONMENT CONSIDER" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ZInternalResourcesHours2" Type="Edm.String" Nullable="false" MaxLength="4" sap:label="INTERNAL_RESOURCES_HOURS_2" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ZFinanceReviewer" Type="Edm.String" Nullable="false" MaxLength="12" sap:label="User ID" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ZInternalResourcesGroup3" Type="Edm.String" Nullable="false" MaxLength="20" sap:label="INTERNAL_RESOURCES_GROUP_3" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ZApprover1" Type="Edm.String" Nullable="false" MaxLength="12" sap:label="User ID" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ZInternalResourcesDetails3" Type="Edm.String" Nullable="false" MaxLength="50" sap:label="INTERNAL_RESOURCES_DETAILS_3" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ZApprover2" Type="Edm.String" Nullable="false" MaxLength="12" sap:label="User ID" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ZInternalResourcesHours3" Type="Edm.String" Nullable="false" MaxLength="4" sap:label="INTERNAL_RESOURCES_HOURS_3" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ZCerStatus" Type="Edm.String" Nullable="false" MaxLength="1" sap:label="CER_STATUS" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ZInternalResourcesGroup4" Type="Edm.String" Nullable="false" MaxLength="20" sap:label="INTERNAL_RESOURCES_GROUP_4" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ZInternalResourcesDetails4" Type="Edm.String" Nullable="false" MaxLength="50" sap:label="INTERNAL_RESOURCES_DETAILS_4" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ZLastDateChanged" Type="Edm.DateTime" Precision="7" sap:label="Date" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ZInternalResourcesHours4" Type="Edm.String" Nullable="false" MaxLength="4" sap:label="INTERNAL_RESOURCES_HOURS_4" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ZLastChangedBy" Type="Edm.String" Nullable="false" MaxLength="12" sap:label="User ID" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ZReasonForReject" Type="Edm.String" Nullable="false" MaxLength="200" sap:label="REASON_FOR REJECT" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ZReplacingAsset" Type="Edm.String" Nullable="false" MaxLength="1" sap:label="YES/NO" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ZReplacingAssetDescription" Type="Edm.String" Nullable="false" MaxLength="50" sap:label="REPLACING_ASSET_DESCRIPTION" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ZReplacingAssetCostCenter" Type="Edm.String" Nullable="false" MaxLength="10" sap:label="Cost Center" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ZReplacingAssetSerialNumb" Type="Edm.String" Nullable="false" MaxLength="18" sap:label="REPLACING_ASSET_SERIAL_NUMB" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ZReplacingAssetCerNumber" Type="Edm.String" Nullable="false" MaxLength="15" sap:label="REPLACING_ASSET_CER_NUMBER" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ZEstimatedStartDate" Type="Edm.DateTime" Precision="7" sap:label="Work Start" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ZEstimatedFinishDate" Type="Edm.DateTime" Precision="7" sap:label="End of Work" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="CER_PROJECT" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="ZCompanyCode"/>
+                    <PropertyRef Name="ZCostCenter"/>
+                    <PropertyRef Name="ZProjectId"/>
+                </Key>
+                <Property Name="ZCompanyCode" Type="Edm.String" Nullable="false" MaxLength="4" sap:label="Company Code" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ZCostCenter" Type="Edm.String" Nullable="false" MaxLength="10" sap:label="Cost Center" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ZProjectId" Type="Edm.String" Nullable="false" MaxLength="20" sap:label="Project ID" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ZProjectDescription" Type="Edm.String" Nullable="false" MaxLength="40" sap:label="Project description" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ZCostCenterDesc" Type="Edm.String" Nullable="false" MaxLength="40" sap:label="Description" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ZBudgetedAmount" Type="Edm.Decimal" Nullable="false" Precision="12" Scale="3" sap:label="BUDGETED_AMOUNT" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ZAssetClass" Type="Edm.String" Nullable="false" MaxLength="8" sap:label="Asset Class" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ZAssetDesc" Type="Edm.String" Nullable="false" MaxLength="50" sap:label="Asset Class Desription" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ZUsefulLifeYear" Type="Edm.String" Nullable="false" MaxLength="3" sap:label="Useful life" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ZSubmitFyBudget" Type="Edm.String" Nullable="false" MaxLength="3" sap:label="Submitted With FY Budget(Yes/No)" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="CER_DROP_DOWN" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="DropDown"/>
+                    <PropertyRef Name="Sequence"/>
+                </Key>
+                <Property Name="DropDown" Type="Edm.String" Nullable="false" MaxLength="30" sap:label="Drop Down Field" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Sequence" Type="Edm.String" Nullable="false" MaxLength="15" sap:label="Sequence" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="DispValue" Type="Edm.String" Nullable="false" MaxLength="100" sap:label="Display Value" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="StoreValue" Type="Edm.String" Nullable="false" MaxLength="10" sap:label="Store Value SAP" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="CER_USER" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="UserType"/>
+                </Key>
+                <Property Name="UserType" Type="Edm.String" Nullable="false" MaxLength="2" sap:label="User Type" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="UserName" Type="Edm.String" Nullable="false" MaxLength="12" sap:label="User Name" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityContainer Name="ZCER_PROJECT_SRV_Entities" m:IsDefaultEntityContainer="true" sap:supported-formats="atom json">
+                <EntitySet Name="CER_MASTERSet" EntityType="ZCER_PROJECT_SRV.CER_MASTER" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="CER_PROJECTSet" EntityType="ZCER_PROJECT_SRV.CER_PROJECT" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="CER_DROP_DOWNSet" EntityType="ZCER_PROJECT_SRV.CER_DROP_DOWN" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="CER_USERSet" EntityType="ZCER_PROJECT_SRV.CER_USER" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+            </EntityContainer>
+            <atom:link
+                xmlns:atom="http://www.w3.org/2005/Atom" rel="self" href="./sap/ZCER_PROJECT_SRV/$metadata"/>
+                <atom:link
+                    xmlns:atom="http://www.w3.org/2005/Atom" rel="latest-version" href="./sap/ZCER_PROJECT_SRV/$metadata"/>
+                </Schema>
+            </edmx:DataServices>
+        </edmx:Edmx>
