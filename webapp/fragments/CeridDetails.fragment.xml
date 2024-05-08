@@ -1,0 +1,17 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout" >
+<Popover id="myPopover" title="Quick View" placement="Right" 		>
+		<content>
+				<l:VerticalLayout
+		class="sapUiContentPadding"
+		width="100%">
+					<l:content>
+			<Text id="popovercerid" text="CerID: {cer1>/zcerid}" />
+			<Text id="popovercostcntr" text="CostCenter: {cer2>/zccenter}" />
+			<Text id="popovercompcode" text="CompanyCode: {cer3>/zcompcode}" />
+			<Text id="popoverbudgamnt" text="BudgetedAmount: {cer4>/zbudgamnt}" />
+			</l:content>
+		</l:VerticalLayout>
+		</content>
+	</Popover>
+
+</core:FragmentDefinition>

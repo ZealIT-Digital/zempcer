@@ -1,0 +1,170 @@
+{
+  "_version": "1.8.0",
+  "sap.app": {
+    "_version": "1.3.0",
+    "id": "ZCER_EMPLOYEE",
+    "type": "application",
+    "i18n": "i18n/i18n.properties",
+    "applicationVersion": {
+      "version": "1.2.2"
+    },
+    "title": "{{appTitle}}",
+    "description": "{{appDescription}}",
+    "ach": "ach",
+    "resources": "resources.json",
+    "sourceTemplate": {
+      "id": "servicecatalog.connectivityComponent",
+      "version": "0.0.0",
+      "toolsId": "be3b2582-a0a8-44e9-a281-ee0b347c28c6"
+    },
+    "dataSources": {
+      "ZCER_PROJECT_SRV": {
+        "uri": "/sap/opu/odata/sap/ZCER_PROJECT_SRV/",
+        "type": "OData",
+        "settings": {
+          "odataVersion": "2.0",
+          "localUri": "localService/ZCER_PROJECT_SRV/metadata.xml"
+        }
+      }
+    },
+    "crossNavigation": {
+      "inbounds": {
+        "empcer-open": {
+          "semanticObject": "empcer",
+          "action": "open",
+          "title": "{{flpTitle}}",
+          "signature": {
+            "parameters": {},
+            "additionalParameters": "allowed"
+          }
+        }
+      }
+    }
+  },
+  "sap.ui": {
+    "_version": "1.3.0",
+    "technology": "UI5",
+    "icons": {
+      "icon": "",
+      "favIcon": "",
+      "phone": "",
+      "phone@2": "",
+      "tablet": "",
+      "tablet@2": ""
+    },
+    "deviceTypes": {
+      "desktop": true,
+      "tablet": true,
+      "phone": true
+    },
+    "supportedThemes": [
+      "sap_hcb",
+      "sap_belize"
+    ]
+  },
+  "sap.ui5": {
+    "_version": "1.3.0",
+    "rootView": {
+      "viewName": "ZCER_EMPLOYEE.view.View1",
+      "type": "XML"
+    },
+    "dependencies": {
+      "minUI5Version": "1.50.0",
+      "libs": {
+        "sap.m": {},
+        "sap.ui.core": {},
+        "sap.ui.layout": {},
+        "sap.ushell": {
+          "minVersion": ""
+        }
+      }
+    },
+    "contentDensities": {
+      "compact": true,
+      "cozy": true
+    },
+    "models": {
+      "i18n": {
+        "type": "sap.ui.model.resource.ResourceModel",
+        "settings": {
+          "bundleName": "ZCER_EMPLOYEE.i18n.i18n"
+        }
+      }
+    },
+    "resources": {
+      "css": []
+    },
+    "routing": {
+      "config": {
+        "routerClass": "sap.m.routing.Router",
+        "viewType": "XML",
+        "viewPath": "ZCER_EMPLOYEE.view",
+        "controlId": "idApp",
+        "clearTarget": false,
+        "controlAggregation": "pages",
+        "bypassed": {
+          "target": [
+            "Main"
+          ]
+        }
+      },
+      "targets": {
+        "Main": {
+          "controlAggregation": "pages",
+          "viewName": "Main",
+          "viewId": "Main",
+          "viewLevel": 1,
+          "transition": "slide"
+        },
+        "CreateCer": {
+          "controlAggregation": "pages",
+          "viewName": "CreateCer",
+          "viewId": "CreateCer",
+          "viewLevel": 3,
+          "transition": "slide"
+        },
+        "FinanceReports": {
+          "controlAggregation": "pages",
+          "viewName": "FinanceReports",
+          "viewId": "FinanceReports",
+          "viewLevel": 2,
+          "transition": "slide"
+        }
+      },
+      "routes": [
+        {
+          "pattern": "Main/:context:",
+          "name": "Main",
+          "target": [
+            "Main"
+          ]
+        },
+        {
+          "pattern": "",
+          "name": "FinanceReports",
+          "target": [
+            "Main"
+          ]
+        },
+        {
+          "pattern": "{ZCerId}",
+          "name": "CreateCer",
+          "target": [
+            "CreateCer"
+          ]
+        },
+        {
+          "pattern": "FinanceReports/:context:",
+          "name": "FinanceReports",
+          "target": [
+            "FinanceReports"
+          ]
+        }
+      ]
+    }
+  },
+  "sap.platform.abap": {
+    "uri": "/sap/bc/ui5_ui5/sap/zempcer/webapp",
+    "_version": "1.1.0"
+  }
+}
